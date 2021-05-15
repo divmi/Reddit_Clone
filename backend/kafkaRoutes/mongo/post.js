@@ -7,7 +7,6 @@ const { checkAuth } = require("./../../Util/passport");
 app.post("/createPost", checkAuth, function (req, res, next) {
   req.body.path = "createPost";
   kafka.make_request("post", req.body, (error, result) => {
-    console.log(result);
     if (result) {
       return res.status(200).send(result.data);
     }
@@ -22,7 +21,6 @@ app.get("/getPostsInCommunity", checkAuth, (req, res) => {
   req.body.page = req.query.page;
   req.body.size = req.query.size;
   kafka.make_request("post", req.body, (error, result) => {
-    console.log(result);
     if (result) {
       return res.status(200).send(result.data);
     }
@@ -34,7 +32,6 @@ app.get("/getPostsInCommunity", checkAuth, (req, res) => {
 app.post("/getAllPostsWithUserId", checkAuth, (req, res) => {
   req.body.path = "getAllPostsWithUserId";
   kafka.make_request("post", req.body, (error, result) => {
-    console.log(result);
     if (result) {
       return res.status(200).send(result.data);
     }

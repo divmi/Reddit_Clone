@@ -75,4 +75,113 @@ describe("Reddit App", function () {
         done(e);
       });
   });
+  describe("Get getNotification data", () => {
+    it("Get /getNotificationData", done => {
+      let data = {
+        user_id: "609f4022e8ab974852c6020a"
+      };
+      agent
+        .post("/getNotificationData")
+        .set("authorization", auth)
+        .send(data)
+        .then(function (res) {
+          expect(res).to.have.status(200);
+          done();
+        })
+        .catch(e => {
+          done(e);
+        });
+    });
+  });
+
+  describe("Get getCommunitiesCreatedByMe data", () => {
+    it("Get /getCommunitiesCreatedByMe", done => {
+      let data = {
+        user_id: "609f4022e8ab974852c6020a"
+      };
+      agent
+        .post("/getCommunitiesCreatedByMe")
+        .set("authorization", auth)
+        .send(data)
+        .then(function (res) {
+          expect(res).to.have.status(200);
+          done();
+        })
+        .catch(e => {
+          done(e);
+        });
+    });
+  });
+
+  describe("Post Comment", () => {
+    it("post /comment", done => {
+      let data = {
+        user_id: "609f4022e8ab974852c6020a",
+        postID: "609f4022e8ab974852c6020a",
+        description: "Hahahah",
+        isParentComment: 0,
+        parentCommentID: "609f4022e8ab974852c6020a",
+        communityID: "609f4022e8ab974852c6020a"
+      };
+      agent
+        .post("/comment")
+        .set("authorization", auth)
+        .send(data)
+        .then(function (res) {
+          expect(res).to.have.status(200);
+          done();
+        })
+        .catch(e => {
+          done(e);
+        });
+    });
+  });
+
+  describe("Post Vote", () => {
+    it("post /vote", done => {
+      let data = {
+        user_id: "609f4022e8ab974852c6020a",
+        postID: "609f4022e8ab974852c6020a",
+        description: "Hahahah",
+        isParentComment: 0,
+        parentCommentID: "609f4022e8ab974852c6020a",
+        communityID: "609f4022e8ab974852c6020a"
+      };
+      agent
+        .post("/comment")
+        .set("authorization", auth)
+        .send(data)
+        .then(function (res) {
+          expect(res).to.have.status(200);
+          done();
+        })
+        .catch(e => {
+          done(e);
+        });
+    });
+  });
+
+  describe("Post createPost", () => {
+    it("post /createPost", done => {
+      let data = {
+        user_id: "609f4022e8ab974852c6020a",
+        postID: "609f4022e8ab974852c6020a",
+        description: "Hahahah",
+        isParentComment: 0,
+        parentCommentID: "609f4022e8ab974852c6020a",
+        communityID: "609f4022e8ab974852c6020a"
+      };
+      agent
+        .post("/comment")
+        .set("authorization", auth)
+        .send(data)
+        .then(function (res) {
+          expect(res).to.have.status(200);
+          done();
+        })
+        .catch(e => {
+          done(e);
+        });
+    });
+  });
 });
