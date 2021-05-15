@@ -24,7 +24,7 @@ app.get("/getUserDetails/:user_id", checkAuth, (req, res) => {
       {
         user_id,
         loggedInUserId: req.user.user_id,
-        path: "GET-USER-DETAILS-BY-ID",
+        path: "GET-USER-DETAILS-BY-ID"
       },
       (error, result) => {
         if (result?.status === 200) {
@@ -54,7 +54,6 @@ app.post("/getSearchedUserForMongo", checkAuth, async (req, res) => {
   req.body.name = req.body.name;
   req.body.users = req.body.users;
   kafka.make_request("mongo_user", req.body, (error, result) => {
-    console.log(result);
     if (result) {
       return res.status(200).send(result);
     }

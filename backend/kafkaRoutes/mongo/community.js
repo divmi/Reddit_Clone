@@ -6,14 +6,14 @@ const kafka = require("../../kafka/client");
 const { checkAuth } = require("./../../Util/passport");
 
 app.get("/getCommunitiesForOwner", checkAuth, async (req, res) => {
-  console.log(req.query);
+  // console.log(req.query);
   req.body.path = "Get-Communities-For-Owner";
   req.body.ID = req.query.ID;
   req.body.page = req.query.page;
   req.body.size = req.query.size;
   req.body.search = req.query.search;
   kafka.make_request("mongo_community", req.body, (error, result) => {
-    console.log(result);
+    // //console.log(result);
     if (result.status === 200) {
       return res.status(200).send(result.data);
     }
@@ -38,7 +38,7 @@ app.get("/getUsersForCommunitiesForOwner", checkAuth, (req, res) => {
 //   req.body.path = "Check-Moderator";
 
 //   kafka.make_request("mongo_community", req.body, (error, result) => {
-//     console.log(result);
+//     //console.log(result);
 //     if (result) {
 //       return res.status(200).send(result);
 //     }
@@ -50,7 +50,6 @@ app.get("/getUsersForCommunitiesForOwner", checkAuth, (req, res) => {
 app.post("/checkForUniqueCommunity", checkAuth, async function (req, res) {
   req.body.path = "Unique-Community";
   kafka.make_request("manage_community", req.body, (error, result) => {
-    console.log(result);
     if (result) {
       return res.status(200).send(result);
     }
@@ -62,7 +61,7 @@ app.post("/checkForUniqueCommunity", checkAuth, async function (req, res) {
 app.post("/addCommunity", checkAuth, function (req, res) {
   req.body.path = "Create-Community";
   kafka.make_request("manage_community", req.body, (error, result) => {
-    console.log(result);
+    //console.log(result);
     if (result) {
       return res.status(200).send(result);
     }
@@ -74,7 +73,7 @@ app.post("/addCommunity", checkAuth, function (req, res) {
 app.post("/editCommunity", checkAuth, async (req, res) => {
   req.body.path = "Edit-Community";
   kafka.make_request("manage_community", req.body, (error, result) => {
-    console.log(result);
+    // //console.log(result);
     if (result) {
       return res.status(200).send(result);
     }
@@ -86,7 +85,7 @@ app.post("/editCommunity", checkAuth, async (req, res) => {
 app.post("/deleteCommunity", checkAuth, (req, res) => {
   req.body.path = "Delete-Community";
   kafka.make_request("manage_community", req.body, (error, result) => {
-    console.log(result);
+    // //console.log(result);
     if (result) {
       return res.status(200).send(result);
     }
@@ -99,7 +98,7 @@ app.get("/communityAnalytics", checkAuth, async function (req, res) {
   req.body.path = "Community-Analytics";
   req.body.ID = req.query.ID;
   kafka.make_request("community_analytics", req.body, (error, result) => {
-    console.log(result);
+    // //console.log(result);
     if (result) {
       return res.status(200).send(result);
     }
@@ -111,9 +110,9 @@ app.get("/communityAnalytics", checkAuth, async function (req, res) {
 app.post("/getCommunitiesCreatedByMe", checkAuth, (req, res) => {
   req.body.user_id = req.body.user_id;
   req.body.path = "Get-Communities-Created-By-Me";
-  console.log(req.body);
+  // console.log(req.body);
   kafka.make_request("mongo_community", req.body, (error, result) => {
-    console.log(result);
+    // //console.log(result);
     if (result) {
       return res.status(200).send(result);
     }
@@ -129,7 +128,7 @@ app.post("/showInvitationStatus", checkAuth, async (req, res) => {
   req.body.community_id = req.body.community_id;
 
   kafka.make_request("mongo_community", req.body, (error, result) => {
-    console.log(result);
+    //console.log(result);
     if (result) {
       return res.status(200).send(result);
     }
@@ -140,9 +139,9 @@ app.post("/showInvitationStatus", checkAuth, async (req, res) => {
 
 app.post("/sendInvite", checkAuth, async (req, res) => {
   var members = [];
-  req.body.users.forEach((user) => {
+  req.body.users.forEach(user => {
     const userData = {
-      userID: user.user_id,
+      userID: user.user_id
     };
     members.push(userData);
   });
@@ -153,7 +152,7 @@ app.post("/sendInvite", checkAuth, async (req, res) => {
   req.body.path = "Send-Invite";
 
   kafka.make_request("mongo_community", req.body, (error, result) => {
-    console.log(result);
+    //console.log(result);
     if (result) {
       return res.status(200).send(result);
     }
@@ -165,7 +164,7 @@ app.post("/sendInvite", checkAuth, async (req, res) => {
 app.get("/getCommunities", checkAuth, function (req, res, next) {
   req.body.path = "getCommunities";
   kafka.make_request("mongo_community", req.body, (error, result) => {
-    console.log(result);
+    //console.log(result);
     if (result) {
       return res.status(200).send(result);
     }
@@ -177,7 +176,7 @@ app.get("/getCommunities", checkAuth, function (req, res, next) {
 app.get("/communityDetails", checkAuth, function (req, res, next) {
   req.body.path = "communityDetails";
   kafka.make_request("mongo_community", req.body, (error, result) => {
-    console.log(result);
+    //console.log(result);
     if (result) {
       return res.status(200).send(result);
     }
@@ -190,7 +189,7 @@ app.get("/getCommunityDetails", checkAuth, async (req, res) => {
   req.body.path = "getCommunityDetails";
   req.body.query = req.query;
   kafka.make_request("mongo_community", req.body, (error, result) => {
-    console.log(result);
+    //console.log(result);
     if (result) {
       return res.status(200).send(result.data);
     }
@@ -298,10 +297,10 @@ app.get("/getUsersWithMorePostsForCommunities", checkAuth, (req, res) => {
     "community_analytics",
     {
       path: "Get-Users-With-More-Posts-For-Communities",
-      ID: req.query.ID,
+      ID: req.query.ID
     },
     (error, result) => {
-      console.log(result);
+      //console.log(result);
       if (result) {
         return res.status(200).send(result);
       }
@@ -318,7 +317,7 @@ app.post("/community/vote/:community_id", checkAuth, (req, res) => {
       path: "Vote-Community",
       community_id: req.params.community_id,
       voting: req.body.voting,
-      user_id: req.body.user_id,
+      user_id: req.body.user_id
     },
     (error, result) => {
       if (result) {

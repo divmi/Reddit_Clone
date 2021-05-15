@@ -13,6 +13,6 @@ module.exports = {
   AWSSecretKey: "W/rDbkJ2vbPGF55+BCDxizzcy7NT1KoDhK+sCSwD",
   AWSBucketName: "splitwiseimage",
   redisPort: 6379,
-  redisHost: "54.85.111.171",
+  redisHost: "54.152.180.56",
   redisPass: "secure-redis"
 };
